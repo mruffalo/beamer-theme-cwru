@@ -7,6 +7,7 @@
 %
 % See the file doc/licenses/LICENSE for more details.
 
+\RequirePackage{ifthen}
 \newif\ifbeamer@tree@showhooks
 \beamer@tree@showhookstrue
 
@@ -22,6 +23,8 @@
     \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
       leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}
       \usebeamerfont{title in head/foot}\insertshorttitle
+      \hfill
+      \usebeamercolor[fg]{frame number in head}\insertframenumber{}/\inserttotalframenumber%
     \end{beamercolorbox}
     \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
       leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
@@ -51,8 +54,18 @@
       \fi%
       \insertsubsectionhead
     \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{lower separation line head}
-    \end{beamercolorbox}
+}
+
+\setbeamertemplate{footline}
+{%
+  \hfill
+  \ifthenelse{\c@framenumber=1}
+    {
+      \includegraphics[height=10ex]{images/cwru-logo-blue.pdf}
+    }
+    {
+      \includegraphics[height=10ex]{images/cwru-logo-blue-light.pdf}
+    }
 }
 
 
